@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rutgers cafe lol</string>
+    <string name="title_text">Rutgers Cafe</string>
+    <string name="order_coffee">Order Coffee</string>
 </resources>
