@@ -2,4 +2,7 @@
     <string name="app_name">Rutgers cafe lol</string>
     <string name="title_text">Rutgers Cafe</string>
     <string name="order_coffee">Order Coffee</string>
+    <string name="order_donuts">Order Donuts</string>
+    <string name="order_details">Order Details</string>
+    <string name="store_orders">Store Orders</string>
 </resources>
