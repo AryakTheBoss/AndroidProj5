@@ -31,7 +31,7 @@ public class OrderCoffee extends AppCompatActivity {
         setContentView(R.layout.activity_order_coffee);
         size = (Spinner) findViewById(R.id.size);
         currentCoffee = new Coffee(Size.SHORT,1); //default values
-
+        setTitle(R.string.order_coffee);
         EditText total = (EditText) findViewById(R.id.total);
         total.setEnabled(false);
         qty = (EditText) findViewById(R.id.quantity);
@@ -54,7 +54,7 @@ public class OrderCoffee extends AppCompatActivity {
                     currentCoffee.setQuantity(Integer.parseInt(num));
                     total.setText(format.format(currentCoffee.itemPrice()));
                 }catch(NumberFormatException e){
-                    Toast.makeText(getApplicationContext(),"Please Enter a Number.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.enter_a_num,Toast.LENGTH_SHORT).show();
 
                     currentCoffee.setQuantity(0);
                 }

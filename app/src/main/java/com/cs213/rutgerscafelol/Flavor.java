@@ -15,11 +15,11 @@ public enum Flavor {
     public String toString() {
         switch(this){
             case CHOCOLATE_FROSTED:
-                return "Choc Frosted";
+                return "Chocolate Frosted";
             case GLAZED:
                 return "Glazed";
             case MAPLE_SYRUP_FROSTED:
-                return "Map Syrp Frstd";
+                return "Maple Syrup Frosted";
             case BLUEBERRY:
                 return "Blueberry";
             case STRAWBERRY:
@@ -27,7 +27,7 @@ public enum Flavor {
             case PLAIN:
                 return "Plain";
             case BOSTON_CREAM:
-                return "Bstn Cream";
+                return "Boston Cream";
             case JELLY_FILLED:
                 return "Jelly";
             case POWDERED_SUGAR:

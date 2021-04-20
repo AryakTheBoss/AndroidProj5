@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Rutgers Cafe</string>
     <string name="title_text">Rutgers Cafe</string>
+    <string name="mm">Main Menu</string>
     <string name="order_coffee">Order Coffee</string>
     <string name="order_donuts">Order Donuts</string>
     <string name="order_details">Order Details</string>
@@ -17,12 +18,27 @@
     <string name="sub_total">Sub-Total:</string>
     <string name="add_to_order">Add to Order</string>
     <string name="tap_back">Tap back when done</string>
+    <string name="flavor">Flavor:</string>
+    <string name="enter_a_num">Please Enter a Number.</string>
 
     <string-array name="sizes">
         <item>Short</item>
         <item>Tall</item>
         <item>Grande</item>
         <item>Venti</item>
+    </string-array>
+
+    <string-array name="flavors">
+        <item>Chocolate Frosted</item>
+        <item>Glazed</item>
+        <item>Maple Syrup Frosted</item>
+        <item>Blueberry</item>
+        <item>Strawberry</item>
+        <item>Plain</item>
+        <item>Boston Cream</item>
+        <item>Jelly</item>
+        <item>Sugar</item>
+        <item>Double Chocolate</item>
     </string-array>
 
 </resources>

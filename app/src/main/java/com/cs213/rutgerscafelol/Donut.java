@@ -15,7 +15,7 @@ public class Donut extends MenuItem{
 
     /**
      * constructor for a donut
-     * @param type three different types of donuts exist
+     *
      * @param flavor nine flavors of donuts exist
      * @param quantity the amount of donuts being ordered at a time
      */
@@ -48,7 +48,7 @@ public class Donut extends MenuItem{
      */
     @Override
     public String toString() {
-        return super.toString()+" "+flavor;
+        return super.toString()+" "+flavor+" Donut"+(super.getQuantity()>1 ? "s":"");
     }
 
     /**
