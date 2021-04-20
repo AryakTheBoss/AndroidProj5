@@ -33,6 +33,7 @@ public class OrderCoffee extends AppCompatActivity {
         currentCoffee = new Coffee(Size.SHORT,1); //default values
 
         EditText total = (EditText) findViewById(R.id.total);
+        total.setEnabled(false);
         qty = (EditText) findViewById(R.id.quantity);
         qty.setText("1");
         qty.addTextChangedListener(new TextWatcher() {
