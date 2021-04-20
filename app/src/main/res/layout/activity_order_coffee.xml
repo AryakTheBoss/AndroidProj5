@@ -176,8 +176,8 @@
 
     <EditText
         android:id="@+id/quantity"
-        android:layout_width="69dp"
-        android:layout_height="38dp"
+        android:layout_width="78dp"
+        android:layout_height="50dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="number"
@@ -197,6 +197,7 @@
         android:ems="10"
         android:inputType="text"
         android:text="@string/_0_00"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.723"
