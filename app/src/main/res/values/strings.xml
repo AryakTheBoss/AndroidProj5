@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> </string>
+    <string name="app_name">Rutgers Cafe</string>
     <string name="title_text">Rutgers Cafe</string>
     <string name="order_coffee">Order Coffee</string>
     <string name="order_donuts">Order Donuts</string>
@@ -17,4 +17,12 @@
     <string name="sub_total">Sub-Total:</string>
     <string name="add_to_order">Add to Order</string>
     <string name="tap_back">Tap back when done</string>
+
+    <string-array name="sizes">
+        <item>Short</item>
+        <item>Tall</item>
+        <item>Grande</item>
+        <item>Venti</item>
+    </string-array>
+
 </resources>

@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class MenuItem {
 
-public int quantity;
+private int quantity;
 private final float DEFAULT = 0.0f;
 
     /**
