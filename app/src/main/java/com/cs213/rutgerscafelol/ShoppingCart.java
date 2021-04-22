@@ -22,7 +22,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
 
-    @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,11 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
      * @param v
      */
     public void placeOrder(View v){
+        if(References.customerOrder.getItems().isEmpty()){
+            Toast.makeText(this, "Your order is empty!", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
         References.orders.add(References.customerOrder);
         References.customerOrder = new Order();
         Toast.makeText(this, "Your order has been placed.", Toast.LENGTH_LONG).show();
