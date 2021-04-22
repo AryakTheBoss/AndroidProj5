@@ -6,94 +6,171 @@
     android:layout_height="match_parent"
     tools:context=".ShoppingCart">
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/orderN"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.627" />
+
     <EditText
-        android:id="@+id/editTextNumber4"
+        android:id="@+id/orderTotal"
+        android:layout_width="116dp"
+        android:layout_height="42dp"
+        android:clickable="false"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/_0_00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.858" />
+
+    <EditText
+        android:id="@+id/sales_tax"
         android:layout_width="117dp"
-        android:layout_height="33dp"
+        android:layout_height="42dp"
+        android:clickable="false"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="631dp" />
+        android:text="@string/_0_00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777" />
 
     <EditText
-        android:id="@+id/editTextNumber3"
-        android:layout_width="119dp"
-        android:layout_height="26dp"
+        android:id="@+id/subtotal"
+        android:layout_width="116dp"
+        android:layout_height="46dp"
+        android:clickable="false"
         android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="592dp" />
-
-    <EditText
-        android:id="@+id/editTextNumber2"
-        android:layout_width="119dp"
-        android:layout_height="32dp"
-        android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="548dp" />
+        android:inputType="text"
+        android:text="@string/_0_00"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.361"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.705" />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="125dp"
-        android:layout_height="71dp"
-        android:text="Your order"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:layout_width="157dp"
+        android:layout_height="63dp"
+        android:fontFamily="casual"
+        android:text="@string/your_order"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderList"
         android:layout_width="376dp"
         android:layout_height="302dp"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="143dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281" />
 
     <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/orderNumber"
+        android:layout_width="147dp"
+        android:layout_height="41dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="485dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.629" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sub total:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="561dp" />
+        android:text="@string/sub_total"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.708" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sales Tax:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="599dp" />
+        android:text="@string/sales_tax"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777" />
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="111dp"
-        android:layout_height="39dp"
-        android:text="Order Total:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="640dp" />
+        android:layout_width="77dp"
+        android:layout_height="31dp"
+        android:text="@string/order_total"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel Order"
-        tools:layout_editor_absoluteX="237dp"
-        tools:layout_editor_absoluteY="482dp" />
+        android:onClick="removeItem"
+        android:text="@string/remove"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.635" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/place"
         android:layout_width="144dp"
         android:layout_height="109dp"
-        android:text="Place Order Now"
-        tools:layout_editor_absoluteX="237dp"
-        tools:layout_editor_absoluteY="548dp" />
+        android:onClick="placeOrder"
+        android:text="@string/place_order_now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

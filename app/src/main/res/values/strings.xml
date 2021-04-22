@@ -20,6 +20,14 @@
     <string name="tap_back">Tap back when done</string>
     <string name="flavor">Flavor:</string>
     <string name="enter_a_num">Please Enter a Number.</string>
+    <string name="your_order">Your order</string>
+    <string name="sales_tax">Sales Tax:</string>
+    <string name="order_total">Order Total:</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="remove">Remove Item</string>
+    <string name="orderN">Order #:</string>
+    <string name="place_order_now">Place Order Now</string>
+
 
     <string-array name="sizes">
         <item>Short</item>

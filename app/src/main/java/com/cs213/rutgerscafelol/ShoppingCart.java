@@ -1,15 +1,90 @@
 package com.cs213.rutgerscafelol;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class ShoppingCart extends AppCompatActivity {
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
+
+    private DecimalFormat format = new DecimalFormat("$#,##0.00");
+    private EditText subtotal,total,tax,orderNum;
+    private int positionMarked = -1;
+    private RecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
         setTitle(R.string.order_details);
+        subtotal = (EditText) findViewById(R.id.subtotal);
+         tax = (EditText) findViewById(R.id.sales_tax);
+         total = (EditText) findViewById(R.id.orderTotal);
+         orderNum = (EditText) findViewById(R.id.orderNumber);
+        total.setEnabled(false);
+        subtotal.setEnabled(false);
+        tax.setEnabled(false);
+        orderNum.setEnabled(false);
+         recyclerView = findViewById(R.id.orderList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<String> converted = new ArrayList<>();
+        ArrayList<MenuItem> items = References.customerOrder.getItems();
+        for(MenuItem i : items){
+            converted.add(i.toString());
+        }
+         adapter = new RecyclerViewAdapter(this, converted);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+        subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
+        total.setText(format.format(References.customerOrder.orderTotal()));
+        tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
+        orderNum.setText(References.customerOrder.getOrderNumber());
+    }
+
+    /**
+     * called by place order button
+     * @param v
+     */
+    public void placeOrder(View v){
+
+    }
+
+    /**
+     * called by remove button
+     * @param v
+     */
+    public void removeItem(View v){
+
+        ArrayList<MenuItem> items = References.customerOrder.getItems();
+        if(positionMarked != -1) {
+            items.remove(positionMarked);
+        }
+        References.customerOrder.setItems(items);
+        ArrayList<String> converted = new ArrayList<>();
+       items = References.customerOrder.getItems();
+        for(MenuItem i : items){
+            converted.add(i.toString());
+        }
+        adapter = new RecyclerViewAdapter(this, converted);
+        recyclerView.setAdapter(adapter);
+        subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
+        total.setText(format.format(References.customerOrder.orderTotal()));
+        tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
+        orderNum.setText(References.customerOrder.getOrderNumber());
+    }
+
+    //mark the item clicked for removal by the remove Item method
+    @Override
+    public void onItemClick(View view, int position) {
+        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        positionMarked = position;
     }
 }
