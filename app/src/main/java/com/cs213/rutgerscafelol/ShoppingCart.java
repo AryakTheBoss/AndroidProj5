@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.prefs.PreferenceChangeEvent;
 
 public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
 
@@ -20,6 +22,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         subtotal = (EditText) findViewById(R.id.subtotal);
          tax = (EditText) findViewById(R.id.sales_tax);
          total = (EditText) findViewById(R.id.orderTotal);
-         orderNum = (EditText) findViewById(R.id.orderNumber);
+         orderNum = (EditText) findViewById(R.id.orderNum);
         total.setEnabled(false);
         subtotal.setEnabled(false);
         tax.setEnabled(false);
@@ -46,7 +49,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
         tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
-        orderNum.setText(References.customerOrder.getOrderNumber());
+        orderNum.setText(Integer.toString(References.customerOrder.getOrderNumber()));
     }
 
     /**
@@ -54,7 +57,10 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
      * @param v
      */
     public void placeOrder(View v){
-
+        References.orders.add(References.customerOrder);
+        References.customerOrder = new Order();
+        Toast.makeText(this, "Your order has been placed.", Toast.LENGTH_LONG).show();
+        finish(); //go back to main menu
     }
 
     /**
@@ -66,6 +72,9 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         ArrayList<MenuItem> items = References.customerOrder.getItems();
         if(positionMarked != -1) {
             items.remove(positionMarked);
+        }else{
+            Toast.makeText(this, "No Items are Selected. Tap an order item to select.", Toast.LENGTH_LONG).show();
+            return;
         }
         References.customerOrder.setItems(items);
         ArrayList<String> converted = new ArrayList<>();
@@ -74,17 +83,21 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
             converted.add(i.toString());
         }
         adapter = new RecyclerViewAdapter(this, converted);
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
         tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
-        orderNum.setText(References.customerOrder.getOrderNumber());
+        orderNum.setText(Integer.toString(References.customerOrder.getOrderNumber()));
+        Toast.makeText(this, "Item was Removed.", Toast.LENGTH_SHORT).show();
+        positionMarked = -1;
     }
 
     //mark the item clicked for removal by the remove Item method
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, adapter.getItem(position)+" is selected.", Toast.LENGTH_SHORT).show();
         positionMarked = position;
     }
 }

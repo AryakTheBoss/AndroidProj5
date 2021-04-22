@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShoppingCart.class);
+                if(References.customerOrder.getItems().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Your shopping cart is empty!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 startActivity(intent);
             }
         });
