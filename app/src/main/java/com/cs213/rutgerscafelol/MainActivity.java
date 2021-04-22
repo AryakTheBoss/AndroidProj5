@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-
+/**
+ * Class contains controls for the Main menu
+ * @author mss390 amp487 Mayank Singamreddy Aryak Pande
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(R.string.mm);
         findViewById(R.id.orderCoff).setOnClickListener(new View.OnClickListener() {
+            /**
+             * open the order coffee activity
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OrderCoffee.class);
@@ -23,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.orderDonuts).setOnClickListener(new View.OnClickListener() {
+            /**
+             * open the order donuts activity
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OrderDonuts.class);
@@ -31,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.orderDeets).setOnClickListener(new View.OnClickListener() {
+            /**
+             * open the shopping cart activity
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShoppingCart.class);
@@ -43,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.storeOrders).setOnClickListener(new View.OnClickListener() {
+            /**
+             * open the store orders activity
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StoreOrdersActivity.class);

@@ -11,7 +11,11 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Class contains controls for the shopping cart menu
+ * @author mss390 amp487 Mayank Singamreddy Aryak Pande
+ *
+ */
 public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
 
     private DecimalFormat format = new DecimalFormat("$#,##0.00");

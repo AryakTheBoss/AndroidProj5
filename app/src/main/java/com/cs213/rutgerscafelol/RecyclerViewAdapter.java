@@ -9,7 +9,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
+/**
+ * Class is a custom adapter for the recycler view to help show the item
+ * @author mss390 amp487 Mayank Singamreddy Aryak Pande
+ *
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<String> listData;
