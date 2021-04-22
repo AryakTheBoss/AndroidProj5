@@ -12,11 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-/**
- * Class contains controls for the ordering new donuts menu
- * @author mss390 amp487 Mayank Singamreddy Aryak Pande
- *
- */
+
 public class OrderDonuts extends AppCompatActivity {
 
     private Spinner flavor;
@@ -45,13 +41,6 @@ public class OrderDonuts extends AppCompatActivity {
                                           int count, int after) {
             }
 
-            /**
-             * method updates the total price every time quantity is changed
-             * @param s the input string
-             * @param start the index of the string's beginning
-             * @param before
-             * @param count the length of the string
-             */
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
@@ -70,13 +59,6 @@ public class OrderDonuts extends AppCompatActivity {
 
 
         flavor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /**
-             * if an item is selected, set the appropriate flavor
-             * @param parentView
-             * @param selectedItemView
-             * @param position the position of the item selected
-             * @param id
-             */
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
@@ -119,7 +101,7 @@ public class OrderDonuts extends AppCompatActivity {
                 total.setText(format.format(currentDonut.itemPrice()));
 
             }
-            
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
@@ -130,10 +112,6 @@ public class OrderDonuts extends AppCompatActivity {
         });
     }
 
-    /**
-     * add donut to the current order
-     * @param v
-     */
     public void addDonuts(View v){
         Toast.makeText(getApplicationContext(),currentDonut.toString()+" Added to Order.",Toast.LENGTH_LONG).show();
         References.customerOrder.add(currentDonut);

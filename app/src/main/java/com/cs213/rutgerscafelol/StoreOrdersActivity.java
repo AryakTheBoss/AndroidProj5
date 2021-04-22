@@ -16,11 +16,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Class contains controls for the storing all orders menu
- * @author mss390 amp487 Mayank Singamreddy Aryak Pande
- *
- */
 public class StoreOrdersActivity extends AppCompatActivity {
 
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
@@ -61,13 +56,6 @@ public class StoreOrdersActivity extends AppCompatActivity {
         orderNum.setAdapter(adapter2);
 
         orderNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /**
-             * when an item is selected, updates recyclerview along with total
-             * @param parentView
-             * @param selectedItemView
-             * @param position the position of the item
-             * @param id
-             */
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
@@ -83,10 +71,6 @@ public class StoreOrdersActivity extends AppCompatActivity {
                 positionSelected = position;
             }
 
-            /**
-             * if nothing is selected, set price to zero, and reset position selected to minus one
-             * @param parentView
-             */
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
@@ -97,10 +81,6 @@ public class StoreOrdersActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     *  if order is canceled, remove from list of orders, and update recylerview
-     * @param v
-     */
     public void cancelOrder(View v){
 
         if(positionSelected == -1){

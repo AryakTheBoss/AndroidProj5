@@ -16,11 +16,7 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Class contains controls for the ordering coffees menu
- * @author mss390 amp487 Mayank Singamreddy Aryak Pande
- *
- */
+
 public class OrderCoffee extends AppCompatActivity {
 
     private Spinner size;
@@ -73,13 +69,6 @@ public class OrderCoffee extends AppCompatActivity {
         whpcrm = (CheckBox) findViewById(R.id.whpcrmCB);
 
         size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /**
-             * Method changes total based on size currently selected
-             * @param parentView
-             * @param selectedItemView
-             * @param position the current index position that it is selected
-             * @param id
-             */
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
@@ -109,10 +98,6 @@ public class OrderCoffee extends AppCompatActivity {
                 whpcrm.setClickable(true);
             }
 
-            /**
-             * If nothing is selected, disable the checkboxes
-             * @param parentView
-             */
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
