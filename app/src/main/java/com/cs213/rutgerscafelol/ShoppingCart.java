@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.prefs.PreferenceChangeEvent;
 
 public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
 
@@ -20,7 +18,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
     private EditText subtotal,total,tax,orderNum;
     private int positionMarked = -1;
     private RecyclerViewAdapter adapter;
-    private RecyclerView recyclerView;
+    private RecyclerView orderList;
 
 
     @Override
@@ -36,8 +34,8 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         subtotal.setEnabled(false);
         tax.setEnabled(false);
         orderNum.setEnabled(false);
-         recyclerView = findViewById(R.id.orderList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+         orderList = findViewById(R.id.orderList);
+        orderList.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<String> converted = new ArrayList<>();
         ArrayList<MenuItem> items = References.customerOrder.getItems();
         for(MenuItem i : items){
@@ -45,7 +43,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         }
          adapter = new RecyclerViewAdapter(this, converted);
         adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        orderList.setAdapter(adapter);
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
         tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
@@ -89,7 +87,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         }
         adapter = new RecyclerViewAdapter(this, converted);
         adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        orderList.setAdapter(adapter);
         subtotal.setText(format.format(References.customerOrder.orderSubTotal()));
         total.setText(format.format(References.customerOrder.orderTotal()));
         tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));

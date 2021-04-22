@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StoreOrdersActivity.class);
+                if(References.orders.getOrders().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "There are currently no Orders!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 startActivity(intent);
             }
         });
