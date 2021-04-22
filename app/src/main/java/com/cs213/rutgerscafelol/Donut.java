@@ -10,6 +10,7 @@ public class Donut extends MenuItem{
 
     private Flavor flavor;
     private final float PRICE = 1.39f;
+    private final int ONE = 1;
 
 
 
@@ -48,7 +49,7 @@ public class Donut extends MenuItem{
      */
     @Override
     public String toString() {
-        return super.toString()+" "+flavor+" Donut"+(super.getQuantity()>1 ? "s":"");
+        return super.toString()+" "+flavor+" Donut"+(super.getQuantity()>ONE ? "s":"");
     }
 
     /**

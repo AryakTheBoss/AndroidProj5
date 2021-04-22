@@ -23,6 +23,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
     private int positionMarked = -1;
     private RecyclerViewAdapter adapter;
     private RecyclerView orderList;
+    private final int NEGATIVEONE = -1;
 
 
     @Override
@@ -77,7 +78,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
     public void removeItem(View v){
 
         ArrayList<MenuItem> items = References.customerOrder.getItems();
-        if(positionMarked != -1) {
+        if(positionMarked != NEGATIVEONE) {
             items.remove(positionMarked);
         }else{
             Toast.makeText(this, "No Items are Selected. Tap an order item to select.", Toast.LENGTH_LONG).show();
@@ -97,7 +98,7 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
         tax.setText(format.format(References.customerOrder.orderSubTotal()*(Order.SALES_TAX-1)));
         orderNum.setText(Integer.toString(References.customerOrder.getOrderNumber()));
         Toast.makeText(this, "Item was Removed.", Toast.LENGTH_SHORT).show();
-        positionMarked = -1;
+        positionMarked = NEGATIVEONE;
     }
 
     //mark the item clicked for removal by the remove Item method

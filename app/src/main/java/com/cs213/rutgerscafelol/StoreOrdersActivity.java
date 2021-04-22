@@ -29,6 +29,8 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     private RecyclerView orderList;
     private final int FIRST = 0;
+    private final int NEGATIVEONE = -1;
+    private final int ZERO = 0;
     private int positionSelected = -1;
 
     @Override
@@ -91,7 +93,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {
 
                 total.setText(R.string._0_00);
-                positionSelected = -1;
+                positionSelected = NEGATIVEONE;
             }
 
         });
@@ -103,7 +105,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
      */
     public void cancelOrder(View v){
 
-        if(positionSelected == -1){
+        if(positionSelected == NEGATIVEONE){
             Toast.makeText(this, "No order is selected.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -134,7 +136,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
         adapter = new RecyclerViewAdapter(this, converted);
         orderList.setAdapter(adapter);
         Toast.makeText(this, "Order was cancelled.", Toast.LENGTH_SHORT).show();
-        positionSelected = 0;
+        positionSelected = ZERO;
 
     }
 }

@@ -23,13 +23,25 @@ public class OrderDonuts extends AppCompatActivity {
     private Donut currentDonut;
     private EditText qty;
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
+    private final int ZERO = 0;
+    private final int ONE = 1;
+    private final int TWO = 2;
+    private final int THREE = 3;
+    private final int FOUR = 4;
+    private final int FIVE = 5;
+    private final int SIX = 6;
+    private final int SEVEN = 7;
+    private final int EIGHT = 8;
+    private final int NINE = 9;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_donuts);
         flavor = (Spinner) findViewById(R.id.flavors);
-        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,1); //default values
+        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,ONE); //default values
         setTitle(R.string.order_donuts);
         EditText total = (EditText) findViewById(R.id.total2);
         total.setEnabled(false);
@@ -62,7 +74,7 @@ public class OrderDonuts extends AppCompatActivity {
                 }catch(NumberFormatException e){
                     Toast.makeText(getApplicationContext(),R.string.enter_a_num,Toast.LENGTH_SHORT).show();
 
-                    currentDonut.setQuantity(0);
+                    currentDonut.setQuantity(ZERO);
                 }
             }
         });
@@ -81,34 +93,34 @@ public class OrderDonuts extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 switch(position){
-                    case 0:
+                    case ZERO:
                         currentDonut.setFlavor(Flavor.CHOCOLATE_FROSTED);
                         break;
-                    case 1:
+                    case ONE:
                         currentDonut.setFlavor(Flavor.GLAZED);
                         break;
-                    case 2:
+                    case TWO:
                         currentDonut.setFlavor(Flavor.MAPLE_SYRUP_FROSTED);
                         break;
-                    case 3:
+                    case THREE:
                         currentDonut.setFlavor(Flavor.BLUEBERRY);
                         break;
-                    case 4:
+                    case FOUR:
                         currentDonut.setFlavor(Flavor.STRAWBERRY);
                         break;
-                    case 5:
+                    case FIVE:
                         currentDonut.setFlavor(Flavor.PLAIN);
                         break;
-                    case 6:
+                    case SIX:
                         currentDonut.setFlavor(Flavor.BOSTON_CREAM);
                         break;
-                    case 7:
+                    case SEVEN:
                         currentDonut.setFlavor(Flavor.JELLY_FILLED);
                         break;
-                    case 8:
+                    case EIGHT:
                         currentDonut.setFlavor(Flavor.POWDERED_SUGAR);
                         break;
-                    case 9:
+                    case NINE:
                         currentDonut.setFlavor(Flavor.DOUBLE_CHOCOLATE);
                         break;
 
@@ -137,9 +149,9 @@ public class OrderDonuts extends AppCompatActivity {
     public void addDonuts(View v){
         Toast.makeText(getApplicationContext(),currentDonut.toString()+" Added to Order.",Toast.LENGTH_LONG).show();
         References.customerOrder.add(currentDonut);
-        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,1);
+        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,ONE);
         qty.setText("1");
-        flavor.setSelection(0);
+        flavor.setSelection(ZERO);
 
 
     }

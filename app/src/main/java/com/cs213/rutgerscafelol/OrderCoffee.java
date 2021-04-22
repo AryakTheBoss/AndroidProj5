@@ -28,13 +28,16 @@ public class OrderCoffee extends AppCompatActivity {
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
     private EditText qty;
     private CheckBox cream,milk,syrup,caramel,whpcrm;
-
+    private final int ZERO = 0;
+    private final int ONE = 1;
+    private final int TWO = 2;
+    private final int THREE = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_coffee);
         size = (Spinner) findViewById(R.id.size);
-        currentCoffee = new Coffee(Size.SHORT,1); //default values
+        currentCoffee = new Coffee(Size.SHORT,ONE); //default values
         setTitle(R.string.order_coffee);
         EditText total = (EditText) findViewById(R.id.total);
         total.setEnabled(false);
@@ -60,7 +63,7 @@ public class OrderCoffee extends AppCompatActivity {
                 }catch(NumberFormatException e){
                     Toast.makeText(getApplicationContext(),R.string.enter_a_num,Toast.LENGTH_SHORT).show();
 
-                    currentCoffee.setQuantity(0);
+                    currentCoffee.setQuantity(ZERO);
                 }
             }
         });
@@ -84,16 +87,16 @@ public class OrderCoffee extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 switch(position){
-                    case 0:
+                    case ZERO:
                         currentCoffee.setSize(Size.SHORT);
                         break;
-                    case 1:
+                    case ONE:
                         currentCoffee.setSize(Size.TALL);
                         break;
-                    case 2:
+                    case TWO:
                         currentCoffee.setSize(Size.GRANDE);
                         break;
-                    case 3:
+                    case THREE:
                         currentCoffee.setSize(Size.VENTI);
                         break;
 
@@ -212,9 +215,9 @@ public class OrderCoffee extends AppCompatActivity {
     public void addOrder(View v){
         Toast.makeText(getApplicationContext(),currentCoffee.toString()+" Added to Order.",Toast.LENGTH_LONG).show();
         References.customerOrder.add(currentCoffee);
-        currentCoffee = new Coffee(Size.SHORT,1);
+        currentCoffee = new Coffee(Size.SHORT,ONE);
         qty.setText("1");
-        size.setSelection(0);
+        size.setSelection(ZERO);
         cream.setChecked(false);
         milk.setChecked(false);
         syrup.setChecked(false);
