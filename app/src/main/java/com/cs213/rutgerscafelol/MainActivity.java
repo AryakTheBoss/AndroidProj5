@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShoppingCart.class);
                 if(References.customerOrder.getItems().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Your shopping cart is empty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Your shopping cart is empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 startActivity(intent);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StoreOrdersActivity.class);
                 if(References.orders.getOrders().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "There are currently no Orders!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "There are currently no Orders!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 startActivity(intent);

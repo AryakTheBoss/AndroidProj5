@@ -68,13 +68,13 @@ public class ShoppingCart extends AppCompatActivity implements RecyclerViewAdapt
      */
     public void placeOrder(View v){
         if(References.customerOrder.getItems().isEmpty()){
-            Toast.makeText(this, R.string.order_empty, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.order_empty, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
         References.orders.add(References.customerOrder); //add this order to the store orders
         References.customerOrder = new Order(); //create a new order
-        Toast.makeText(this, R.string.order_placed, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.order_placed, Toast.LENGTH_SHORT).show();
         finish(); //go back to main menu
     }
 
