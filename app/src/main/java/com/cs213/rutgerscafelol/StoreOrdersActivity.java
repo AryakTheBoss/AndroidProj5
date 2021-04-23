@@ -29,9 +29,9 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     private RecyclerView orderList;
     private final int FIRST = 0;
-    private final int NEGATIVEONE = -1;
-    private final int ZERO = 0;
-    private int positionSelected = -1;
+    private final int OUTOFBOUNDS = -1;
+
+    private int positionSelected = OUTOFBOUNDS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +43,11 @@ public class StoreOrdersActivity extends AppCompatActivity {
         total.setEnabled(false);
         orderList = findViewById(R.id.currentOrderList);
         orderList.setLayoutManager(new LinearLayoutManager(this));
-        //References.orders.getOrders().get(0).getItems()
-        ArrayList<String> converted = new ArrayList<>();
-        ArrayList<MenuItem> items = References.orders.getOrders().get(FIRST).getItems();
-        for(MenuItem i : items){
-            converted.add(i.toString());
-        }
-        adapter = new RecyclerViewAdapter(this, converted);
-        orderList.setAdapter(adapter);
-        total.setText(format.format(References.orders.getOrders().get(FIRST).orderTotal()));
-        List<String> orderNumss =  new ArrayList<String>();
-        for(Order o : References.orders.getOrders()){
-            orderNumss.add(Integer.toString(o.getOrderNumber()));
-        }
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, orderNumss);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orderNum.setAdapter(adapter2);
+       updateRecyclerView(FIRST); //initialize the list
+
+        total.setText(format.format(References.orders.getOrders().get(FIRST).orderTotal())); //initalize the total
+       updateSpinnerBox(); //initialize the list of orders
 
         orderNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             /**
@@ -73,16 +60,10 @@ public class StoreOrdersActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-                ArrayList<String> converted = new ArrayList<>();
-                ArrayList<MenuItem> items = References.orders.getOrders().get(position).getItems();
-                for(MenuItem i : items){
-                    converted.add(i.toString());
-                }
-                adapter = new RecyclerViewAdapter(getApplicationContext(), converted);
-                orderList.setAdapter(adapter);
-                total.setText(format.format(References.orders.getOrders().get(position).orderTotal()));
+               updateRecyclerView(position); //update list
+                total.setText(format.format(References.orders.getOrders().get(position).orderTotal())); //update total
 
-                positionSelected = position;
+                positionSelected = position; //update the position selected in case of removal
             }
 
             /**
@@ -92,11 +73,40 @@ public class StoreOrdersActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
-                total.setText(R.string._0_00);
-                positionSelected = NEGATIVEONE;
+                total.setText(R.string._0_00); //set to default string
+                positionSelected = OUTOFBOUNDS;
             }
 
         });
+    }
+
+    /**
+     * updates the dropdown box
+     */
+    public void updateSpinnerBox(){
+        List<String> orderNumss =  new ArrayList<String>();
+        for(Order o : References.orders.getOrders()){ //add the items
+            orderNumss.add(Integer.toString(o.getOrderNumber()));
+        }
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, orderNumss);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        orderNum.setAdapter(adapter2); //set the adapter
+    }
+
+    /**
+     * updates the recycler view
+     * @param orderIndex
+     */
+    public void updateRecyclerView(int orderIndex){
+        ArrayList<String> converted = new ArrayList<>();
+        ArrayList<MenuItem> items = References.orders.getOrders().get(orderIndex).getItems();
+        for(MenuItem i : items){ //update list
+            converted.add(i.toString());
+        }
+        adapter = new RecyclerViewAdapter(this, converted);
+        orderList.setAdapter(adapter); //set adapter
     }
 
     /**
@@ -105,38 +115,24 @@ public class StoreOrdersActivity extends AppCompatActivity {
      */
     public void cancelOrder(View v){
 
-        if(positionSelected == NEGATIVEONE){
-            Toast.makeText(this, "No order is selected.", Toast.LENGTH_SHORT).show();
+        if(positionSelected == OUTOFBOUNDS){
+            Toast.makeText(this, R.string.no_order_selected, Toast.LENGTH_SHORT).show();
             return;
         }
         ArrayList<Order> storeOrders = References.orders.getOrders();
         storeOrders.remove(positionSelected);
         References.orders.setOrders(storeOrders);
         //repopulate
-        if(References.orders.getOrders().isEmpty()){
-            Toast.makeText(this, "There are no more orders!", Toast.LENGTH_SHORT).show();
+        if(References.orders.getOrders().isEmpty()){ //if there are no more orders, return to main menu
+            Toast.makeText(this, R.string.no_more_orders, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
-        List<String> orderNumss =  new ArrayList<String>();
-        for(Order o : References.orders.getOrders()){
-            orderNumss.add(Integer.toString(o.getOrderNumber()));
-        }
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, orderNumss);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orderNum.setAdapter(adapter2);
-        total.setText(format.format(References.orders.getOrders().get(FIRST).orderTotal()));
-        ArrayList<String> converted = new ArrayList<>();
-        ArrayList<MenuItem> items = References.orders.getOrders().get(FIRST).getItems();
-        for(MenuItem i : items){
-            converted.add(i.toString());
-        }
-        adapter = new RecyclerViewAdapter(this, converted);
-        orderList.setAdapter(adapter);
-        Toast.makeText(this, "Order was cancelled.", Toast.LENGTH_SHORT).show();
-        positionSelected = ZERO;
+        updateSpinnerBox();
+        total.setText(format.format(References.orders.getOrders().get(FIRST).orderTotal())); //update total
+        updateRecyclerView(FIRST); //set first position
+        Toast.makeText(this, R.string.order_cancelled, Toast.LENGTH_SHORT).show();
+        positionSelected = FIRST;
 
     }
 }

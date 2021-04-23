@@ -23,16 +23,17 @@ public class OrderDonuts extends AppCompatActivity {
     private Donut currentDonut;
     private EditText qty;
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
-    private final int ZERO = 0;
-    private final int ONE = 1;
-    private final int TWO = 2;
-    private final int THREE = 3;
-    private final int FOUR = 4;
-    private final int FIVE = 5;
-    private final int SIX = 6;
-    private final int SEVEN = 7;
-    private final int EIGHT = 8;
-    private final int NINE = 9;
+    private final int DEFAULT_QTY = 1;
+    private final int FIRST = 0;
+    private final int SECOND = 1;
+    private final int THIRD = 2;
+    private final int FOURTH = 3;
+    private final int FIFTH = 4;
+    private final int SIXTH = 5;
+    private final int SEVENTH = 6;
+    private final int EIGHTH = 7;
+    private final int NINTH = 8;
+    private final int TENTH = 9;
 
 
 
@@ -41,7 +42,7 @@ public class OrderDonuts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_donuts);
         flavor = (Spinner) findViewById(R.id.flavors);
-        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,ONE); //default values
+        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED, DEFAULT_QTY); //default values
         setTitle(R.string.order_donuts);
         EditText total = (EditText) findViewById(R.id.total2);
         total.setEnabled(false);
@@ -74,11 +75,11 @@ public class OrderDonuts extends AppCompatActivity {
                 }catch(NumberFormatException e){
                     Toast.makeText(getApplicationContext(),R.string.enter_a_num,Toast.LENGTH_SHORT).show();
 
-                    currentDonut.setQuantity(ZERO);
+                    currentDonut.setQuantity(DEFAULT_QTY);
                 }
             }
         });
-        total.setText(format.format(currentDonut.itemPrice()));
+        total.setText(format.format(currentDonut.itemPrice())); //update total
 
 
         flavor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -93,34 +94,34 @@ public class OrderDonuts extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 switch(position){
-                    case ZERO:
+                    case FIRST:
                         currentDonut.setFlavor(Flavor.CHOCOLATE_FROSTED);
                         break;
-                    case ONE:
+                    case SECOND:
                         currentDonut.setFlavor(Flavor.GLAZED);
                         break;
-                    case TWO:
+                    case THIRD:
                         currentDonut.setFlavor(Flavor.MAPLE_SYRUP_FROSTED);
                         break;
-                    case THREE:
+                    case FOURTH:
                         currentDonut.setFlavor(Flavor.BLUEBERRY);
                         break;
-                    case FOUR:
+                    case FIFTH:
                         currentDonut.setFlavor(Flavor.STRAWBERRY);
                         break;
-                    case FIVE:
+                    case SIXTH:
                         currentDonut.setFlavor(Flavor.PLAIN);
                         break;
-                    case SIX:
+                    case SEVENTH:
                         currentDonut.setFlavor(Flavor.BOSTON_CREAM);
                         break;
-                    case SEVEN:
+                    case EIGHTH:
                         currentDonut.setFlavor(Flavor.JELLY_FILLED);
                         break;
-                    case EIGHT:
+                    case NINTH:
                         currentDonut.setFlavor(Flavor.POWDERED_SUGAR);
                         break;
-                    case NINE:
+                    case TENTH:
                         currentDonut.setFlavor(Flavor.DOUBLE_CHOCOLATE);
                         break;
 
@@ -131,7 +132,11 @@ public class OrderDonuts extends AppCompatActivity {
                 total.setText(format.format(currentDonut.itemPrice()));
 
             }
-            
+
+            /**
+             * if nothign is selected set total to default value
+             * @param parentView
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
@@ -149,9 +154,9 @@ public class OrderDonuts extends AppCompatActivity {
     public void addDonuts(View v){
         Toast.makeText(getApplicationContext(),currentDonut.toString()+" Added to Order.",Toast.LENGTH_LONG).show();
         References.customerOrder.add(currentDonut);
-        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED,ONE);
+        currentDonut = new Donut(Flavor.CHOCOLATE_FROSTED, DEFAULT_QTY);
         qty.setText("1");
-        flavor.setSelection(ZERO);
+        flavor.setSelection(FIRST);
 
 
     }

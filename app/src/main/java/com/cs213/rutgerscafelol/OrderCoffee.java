@@ -14,8 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
+
 /**
  * Class contains controls for the ordering coffees menu
  * @author mss390 amp487 Mayank Singamreddy Aryak Pande
@@ -28,16 +27,18 @@ public class OrderCoffee extends AppCompatActivity {
     private DecimalFormat format = new DecimalFormat("$#,##0.00");
     private EditText qty;
     private CheckBox cream,milk,syrup,caramel,whpcrm;
-    private final int ZERO = 0;
-    private final int ONE = 1;
-    private final int TWO = 2;
-    private final int THREE = 3;
+    private final int DEFAULT_QTY = 1;
+    private final int SHORT = 0;
+    private final int TALL = 1;
+    private final int GRANDE = 2;
+    private final int VENTI = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_coffee);
         size = (Spinner) findViewById(R.id.size);
-        currentCoffee = new Coffee(Size.SHORT,ONE); //default values
+        currentCoffee = new Coffee(Size.SHORT, DEFAULT_QTY); //default values
         setTitle(R.string.order_coffee);
         EditText total = (EditText) findViewById(R.id.total);
         total.setEnabled(false);
@@ -53,25 +54,32 @@ public class OrderCoffee extends AppCompatActivity {
                                           int count, int after) {
             }
 
+            /**
+             * update price everytime quantity is changed
+             * @param s the string in the box currently
+             * @param start
+             * @param before
+             * @param count
+             */
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 String num = s.toString();
                 try {
-                    currentCoffee.setQuantity(Integer.parseInt(num));
+                    currentCoffee.setQuantity(Integer.parseInt(num)); //parse and update
                     total.setText(format.format(currentCoffee.itemPrice()));
                 }catch(NumberFormatException e){
                     Toast.makeText(getApplicationContext(),R.string.enter_a_num,Toast.LENGTH_SHORT).show();
 
-                    currentCoffee.setQuantity(ZERO);
+                    currentCoffee.setQuantity(DEFAULT_QTY);
                 }
             }
         });
-        total.setText(format.format(currentCoffee.itemPrice()));
+        total.setText(format.format(currentCoffee.itemPrice())); //update price
 
         cream = (CheckBox) findViewById(R.id.creamCB);
          milk = (CheckBox) findViewById(R.id.milkCB);
-         syrup = (CheckBox) findViewById(R.id.syrupCB);
+         syrup = (CheckBox) findViewById(R.id.syrupCB); //initalize all checkboxes
          caramel = (CheckBox) findViewById(R.id.caramelCB);
         whpcrm = (CheckBox) findViewById(R.id.whpcrmCB);
 
@@ -87,16 +95,16 @@ public class OrderCoffee extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 switch(position){
-                    case ZERO:
+                    case SHORT:
                         currentCoffee.setSize(Size.SHORT);
                         break;
-                    case ONE:
+                    case TALL:
                         currentCoffee.setSize(Size.TALL);
                         break;
-                    case TWO:
+                    case GRANDE:
                         currentCoffee.setSize(Size.GRANDE);
                         break;
-                    case THREE:
+                    case VENTI:
                         currentCoffee.setSize(Size.VENTI);
                         break;
 
@@ -104,10 +112,10 @@ public class OrderCoffee extends AppCompatActivity {
 
 
                 }
-                total.setText(format.format(currentCoffee.itemPrice()));
+                total.setText(format.format(currentCoffee.itemPrice())); //update total
                 cream.setClickable(true);
                 milk.setClickable(true);
-                syrup.setClickable(true);
+                syrup.setClickable(true); //make sure they are enabled
                 caramel.setClickable(true);
                 whpcrm.setClickable(true);
             }
@@ -121,7 +129,7 @@ public class OrderCoffee extends AppCompatActivity {
 
                 total.setText(R.string._0_00);
                 cream.setClickable(false);
-                milk.setClickable(false);
+                milk.setClickable(false); //disable the checkboxes
                 syrup.setClickable(false);
                 caramel.setClickable(false);
                 whpcrm.setClickable(false);
@@ -130,7 +138,7 @@ public class OrderCoffee extends AppCompatActivity {
         });
 
 
-
+        /* ADD LISTENERS TO EACH CHECKBOX */
 
         cream.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -141,7 +149,7 @@ public class OrderCoffee extends AppCompatActivity {
                                                    }else{ //if the new value is FALSE
                                                        currentCoffee.remove(AddIns.CREAM);
                                                    }
-                                                   //TODO update total box
+
                                                    total.setText(format.format(currentCoffee.itemPrice()));
                                                }
                                            }
@@ -155,7 +163,7 @@ public class OrderCoffee extends AppCompatActivity {
                                                  }else{ //if the new value is FALSE
                                                      currentCoffee.remove(AddIns.MILK);
                                                  }
-                                                 //TODO update total box
+
                                                  total.setText(format.format(currentCoffee.itemPrice()));
                                              }
                                          }
@@ -169,7 +177,7 @@ public class OrderCoffee extends AppCompatActivity {
                                                  }else{ //if the new value is FALSE
                                                      currentCoffee.remove(AddIns.SYRUP);
                                                  }
-                                                 //TODO update total box
+
                                                  total.setText(format.format(currentCoffee.itemPrice()));
                                              }
                                          }
@@ -183,7 +191,7 @@ public class OrderCoffee extends AppCompatActivity {
                                                  }else{ //if the new value is FALSE
                                                      currentCoffee.remove(AddIns.CARAMEL);
                                                  }
-                                                 //TODO update total box
+
                                                  total.setText(format.format(currentCoffee.itemPrice()));
                                              }
                                          }
@@ -197,7 +205,7 @@ public class OrderCoffee extends AppCompatActivity {
                                                  }else{ //if the new value is FALSE
                                                      currentCoffee.remove(AddIns.WHIPPED_CREAM);
                                                  }
-                                                 //TODO update total box
+
                                                  total.setText(format.format(currentCoffee.itemPrice()));
                                              }
                                          }
@@ -213,14 +221,14 @@ public class OrderCoffee extends AppCompatActivity {
      * @param v
      */
     public void addOrder(View v){
-        Toast.makeText(getApplicationContext(),currentCoffee.toString()+" Added to Order.",Toast.LENGTH_LONG).show();
-        References.customerOrder.add(currentCoffee);
-        currentCoffee = new Coffee(Size.SHORT,ONE);
+        Toast.makeText(getApplicationContext(),currentCoffee.toString()+" Added to Order.",Toast.LENGTH_LONG).show(); //show message
+        References.customerOrder.add(currentCoffee); //add coffee to the order
+        currentCoffee = new Coffee(Size.SHORT, DEFAULT_QTY); //create a new coffee
         qty.setText("1");
-        size.setSelection(ZERO);
+        size.setSelection(SHORT);
         cream.setChecked(false);
         milk.setChecked(false);
-        syrup.setChecked(false);
+        syrup.setChecked(false); //reset all check boxes
         caramel.setChecked(false);
         whpcrm.setChecked(false);
 

@@ -28,6 +28,14 @@
     <string name="orderN">Order #:</string>
     <string name="place_order_now">Place Order Now</string>
 
+    <string name="no_order_selected">No order is selected.</string>
+    <string name="no_more_orders">There are no more orders!</string>
+    <string name="order_cancelled">Order was cancelled.</string>
+
+    <string name="nothing_selected_cart">No Items are Selected. Tap an order item to select.</string>
+    <string name="removed_done">Item was Removed.</string>
+    <string name="order_placed">Your order has been placed.</string>
+    <string name="order_empty">Your order is now empty!</string>
 
     <string-array name="sizes">
         <item>Short</item>
